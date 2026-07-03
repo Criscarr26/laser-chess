@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laser Chess ⚡ Rojo vs Azul</title>
+  <meta name="description" content="Laser Chess: alcanza al Faraón enemigo con tu láser. Juega contra la IA (minimax) o contra un amigo, directo en el navegador.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10 L90 85 L10 85 Z' fill='%23ff4d5a'/%3E%3Ccircle cx='50' cy='60' r='10' fill='%2322d3ee'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1><span class="txt-red">⚡ LASER</span> <span class="txt-blue">CHESS</span></h1>
+    <p class="tagline">Alcanza al Faraón enemigo con tu láser · Portado desde Python a la web</p>
+  </header>
+
+  <main>
+    <section class="board-wrap">
+      <div class="board-frame">
+        <div id="board" class="board"></div>
+        <svg id="laserLayer" class="laser-layer" viewBox="0 0 1000 800" preserveAspectRatio="none"></svg>
+        <div id="fxLayer" class="fx-layer"></div>
+        <div id="thinking" class="thinking"><span class="spinner"></span> IA pensando…</div>
+      </div>
+      <div id="rotateBar" class="rotate-bar">
+        <button id="rotL" class="btn btn-rot" title="Rotar a la izquierda">⟲</button>
+        <span id="rotHint" class="rot-hint">Selecciona una pieza</span>
+        <button id="rotR" class="btn btn-rot" title="Rotar a la derecha">⟳</button>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="card turn-card">
+        <span id="turnDot" class="dot dot-red"></span>
+        <div>
+          <div id="turnLabel" class="turn-label txt-red">Turno: ROJO</div>
+          <div id="statusMsg" class="status-msg">Mueve, rota o intercambia una pieza</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="field">
+          <label for="modeSel">Modo</label>
+          <select id="modeSel">
+            <option value="pve-red">Humano (Rojo) vs IA</option>
+            <option value="pve-blue">IA vs Humano (Azul)</option>
+            <option value="pvp">2 jugadores</option>
+            <option value="ai">IA vs IA (demo)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="levelSel">Dificultad de la IA</label>
+          <select id="levelSel">
+            <option value="facil">Fácil</option>
+            <option value="medio">Medio</option>
+            <option value="dificil">Difícil</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <button id="newGame" class="btn btn-primary">⟳ Nueva partida</button>
+          <button id="undoBtn" class="btn">↩ Deshacer</button>
+        </div>
+        <div class="btn-row">
+          <button id="soundBtn" class="btn">🔊 Sonido</button>
+          <button id="helpBtn" class="btn">❓ Reglas</button>
+        </div>
+      </div>
+
+      <div class="card history-card">
+        <h3>Historial</h3>
+        <ol id="history" class="history"></ol>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    Versión web de <code>laser_chess.py</code> · IA minimax con poda alfa-beta · Sin dependencias
+  </footer>
+
+  <!-- Modal de victoria -->
+  <div id="winModal" class="modal">
+    <div class="modal-box">
+      <div class="trophy">🏆</div>
+      <h2 id="winTitle">¡Gana ROJO!</h2>
+      <p id="winDetail"></p>
+      <div class="btn-row center">
+        <button id="replayBtn" class="btn btn-primary">Jugar de nuevo</button>
+        <button class="btn" data-close>Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de ayuda -->
+  <div id="helpModal" class="modal">
+    <div class="modal-box modal-help">
+      <h2>Cómo jugar</h2>
+      <p>En tu turno haz <strong>una</strong> acción: mover una pieza a una casilla adyacente vacía
+        (incluye diagonales), rotarla 90°, o intercambiar con el Espejo Doble. Al terminar tu acción,
+        <strong>tu Esfinge dispara el láser automáticamente</strong>.</p>
+      <table class="help-table">
+        <tbody id="helpPieces"></tbody>
+      </table>
+      <p><span class="zone-chip zone-chip-red"></span> / <span class="zone-chip zone-chip-blue"></span>
+        Casillas exclusivas: solo las piezas de ese color pueden entrar.</p>
+      <p><strong>Ganas</strong> cuando el láser (de cualquiera) alcanza al Faraón enemigo.
+        Cuidado: si un láser alcanza a <em>tu propio</em> Faraón, pierdes tú.</p>
+      <div class="btn-row center">
+        <button class="btn btn-primary" data-close>¡Entendido!</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/engine.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
