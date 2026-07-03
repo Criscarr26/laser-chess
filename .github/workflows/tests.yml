@@ -13,4 +13,4 @@ jobs:
         with:
           node-version: 22
       - name: Ejecutar tests del motor
-        run: node --test tests/
+        run: node --test tests/engine.test.js

@@ -1,6 +1,6 @@
 /*
  * Tests del motor de Laser Chess.
- * Ejecutar con: node --test tests/
+ * Ejecutar con: node --test tests/engine.test.js
  */
 'use strict';
 
