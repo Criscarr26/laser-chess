@@ -92,7 +92,7 @@ La IA está en [`js/ai.js`](js/ai.js) y usa **minimax con poda alfa-beta**:
 Con [Node.js](https://nodejs.org) instalado:
 
 ```bash
-node --test tests/
+node --test tests/engine.test.js
 ```
 
 Cubren: física del láser (reflexiones, destrucción, absorción), reglas de movimiento y rotación,
