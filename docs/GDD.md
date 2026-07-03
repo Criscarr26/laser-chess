@@ -30,11 +30,11 @@ de fuego que cambia una pieza a la vez.
 
 | Pieza | Mueve | Rota | Destruible | Rol |
 |---|---|---|---|---|
-| Faraón | ✅ | ❌ | ✅ (derrota) | Rey |
-| Esfinge | ❌ | ✅ (solo hacia dentro) | ❌ | Cañón láser |
-| Triángulo | ✅ | ✅ | ✅ (por caras no espejadas) | Espejo direccional |
-| Bloque | ✅ | ❌ | ✅ | Escudo sacrificable |
-| Espejo Doble | ✅ + intercambio | ✅ (alterna / y \) | ❌ | Espejo total / comodín |
+| Faraón | Sí | No | Sí (derrota) | Rey |
+| Esfinge | No | Sí (solo hacia dentro) | No | Cañón láser |
+| Triángulo | Sí | Sí | Sí (por caras no espejadas) | Espejo direccional |
+| Bloque | Sí | No | Sí | Escudo sacrificable |
+| Espejo Doble | Sí + intercambio | Sí (alterna / y \) | No | Espejo total / comodín |
 
 ## 5. Condiciones de fin
 

@@ -4,8 +4,7 @@ Juego de estrategia por turnos inspirado en **Khet**: mueve y rota espejos para 
 alcance al **Faraón** enemigo. Juega contra la **IA (minimax con poda alfa-beta)** o contra un
 amigo, directamente en el navegador — **sin dependencias ni instalación**.
 
-> 🎮 **Demo:** publícalo con GitHub Pages y el juego queda en vivo en
-> `https://<tu-usuario>.github.io/<tu-repo>/`
+> **Demo:** https://criscarr26.github.io/laser-chess/
 
 ![Estado](https://img.shields.io/badge/estado-jugable-brightgreen)
 ![Hecho con](https://img.shields.io/badge/JavaScript-vanilla-yellow)
@@ -14,7 +13,7 @@ amigo, directamente en el navegador — **sin dependencias ni instalación**.
 
 ---
 
-## 🕹️ Cómo jugar
+## Cómo jugar
 
 Cada turno haces **una** acción y al terminar **tu Esfinge dispara el láser automáticamente**:
 
@@ -28,21 +27,21 @@ Cada turno haces **una** acción y al terminar **tu Esfinge dispara el láser au
 
 | Pieza | Rol |
 |---|---|
-| **Faraón** 🔺 | El objetivo. Se mueve pero no rota. Si un láser lo alcanza, su dueño pierde. |
-| **Esfinge** 🔫 | Dispara el láser. Rota (nunca hacia fuera del tablero) pero no se mueve ni se destruye. |
-| **Triángulo** 📐 | Refleja el láser con su cara espejada (la diagonal brillante). Golpeado por otra cara, se destruye. |
-| **Bloque** 🧱 | Absorbe el láser pero queda destruido. No rota. |
-| **Espejo Doble** 🪞 | Refleja por ambas caras — indestructible. Puede intercambiar posición con Triángulos y Bloques adyacentes. |
+| **Faraón** | El objetivo. Se mueve pero no rota. Si un láser lo alcanza, su dueño pierde. |
+| **Esfinge** | Dispara el láser. Rota (nunca hacia fuera del tablero) pero no se mueve ni se destruye. |
+| **Triángulo** | Refleja el láser con su cara espejada (la diagonal brillante). Golpeado por otra cara, se destruye. |
+| **Bloque** | Absorbe el láser pero queda destruido. No rota. |
+| **Espejo Doble** | Refleja por ambas caras — indestructible. Puede intercambiar posición con Triángulos y Bloques adyacentes. |
 
 Las **casillas tintadas** de rojo/azul son exclusivas: solo piezas de ese color pueden entrar.
 
 ### Modos de juego
 
-- 🧍 **Humano vs IA** (como Rojo o como Azul) con 3 dificultades
-- 🧑‍🤝‍🧑 **2 jugadores** en el mismo dispositivo
-- 🤖 **IA vs IA** — modo demo para ver a las dos IAs enfrentarse
+- **Humano vs IA** (como Rojo o como Azul) con 3 dificultades
+- **2 jugadores** en el mismo dispositivo
+- **IA vs IA** — modo demo para ver a las dos IAs enfrentarse
 
-## 🚀 Ejecutar localmente
+## Ejecutar localmente
 
 No hay build ni dependencias. Cualquiera de estas opciones:
 
@@ -61,7 +60,7 @@ También se incluye la **versión original de consola** en Python:
 python laser_chess.py
 ```
 
-## 🧠 La IA
+## La IA
 
 La IA está en [`js/ai.js`](js/ai.js) y usa **minimax con poda alfa-beta**:
 
@@ -72,7 +71,7 @@ La IA está en [`js/ai.js`](js/ai.js) y usa **minimax con poda alfa-beta**:
   lo que maximiza los cortes de la poda.
 - **Dificultades**: Fácil (profundidad 1 + aleatoriedad), Medio (profundidad 2), Difícil (profundidad 3).
 
-## 📁 Estructura
+## Estructura
 
 ```
 ├── index.html          # Página del juego
@@ -87,7 +86,7 @@ La IA está en [`js/ai.js`](js/ai.js) y usa **minimax con poda alfa-beta**:
 └── laser_chess.py      # Versión original de consola (Python)
 ```
 
-## ✅ Tests
+## Tests
 
 Con [Node.js](https://nodejs.org) instalado:
 
@@ -98,13 +97,13 @@ node --test tests/engine.test.js
 Cubren: física del láser (reflexiones, destrucción, absorción), reglas de movimiento y rotación,
 zonas exclusivas, intercambio del Espejo Doble, condiciones de victoria y sanidad de la IA.
 
-## 🌐 Publicar en GitHub Pages
+## Publicar en GitHub Pages
 
 1. Sube el repo a GitHub
 2. **Settings → Pages → Source: Deploy from a branch → `main` / root**
 3. En un minuto el juego queda en vivo en `https://<tu-usuario>.github.io/<tu-repo>/`
 
-## 📝 Notas de diseño
+## Notas de diseño
 
 - **Regla corregida respecto a la versión de consola**: en `laser_chess.py`, quien disparaba
   ganaba si el láser alcanzaba *cualquier* Faraón (incluso el propio). Aquí se aplica la regla
@@ -115,6 +114,6 @@ zonas exclusivas, intercambio del Espejo Doble, condiciones de victoria y sanida
 - El motor (`engine.js`) es inmutable: cada acción devuelve un estado nuevo, lo que hace
   trivial el "deshacer" y la búsqueda minimax.
 
-## 📄 Licencia
+## Licencia
 
 [MIT](LICENSE)
