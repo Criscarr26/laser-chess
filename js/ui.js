@@ -487,7 +487,7 @@
     });
 
     const soundBtn = $('soundBtn');
-    const paintSound = () => { soundBtn.textContent = settings.sound ? '🔊 Sonido' : '🔇 Sonido'; };
+    const paintSound = () => { soundBtn.textContent = settings.sound ? 'Sonido: Sí' : 'Sonido: No'; };
     paintSound();
     soundBtn.addEventListener('click', () => {
       settings.sound = !settings.sound; saveSettings(); paintSound(); sfx.click();

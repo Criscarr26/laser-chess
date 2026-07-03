@@ -360,8 +360,6 @@ select {
 }
 @keyframes pop { from { transform: scale(.92); opacity: 0; } }
 
-.trophy { font-size: 3.2rem; }
-
 .modal-box h2 { font-family: 'Orbitron', sans-serif; margin: 8px 0; letter-spacing: 2px; }
 .modal-box p { color: var(--text-dim); margin: 10px 0; line-height: 1.5; }
 
