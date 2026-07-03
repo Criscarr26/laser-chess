@@ -1,4 +1,4 @@
-# ⚡ Laser Chess
+# Laser Chess
 
 Juego de estrategia por turnos inspirado en **Khet**: mueve y rota espejos para que tu láser
 alcance al **Faraón** enemigo. Juega contra la **IA (minimax con poda alfa-beta)** o contra un
