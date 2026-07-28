@@ -1,119 +1,118 @@
 # Laser Chess
 
-Juego de estrategia por turnos inspirado en **Khet**: mueve y rota espejos para que tu láser
-alcance al **Faraón** enemigo. Juega contra la **IA (minimax con poda alfa-beta)** o contra un
-amigo, directamente en el navegador — **sin dependencias ni instalación**.
+Turn-based strategy game inspired by **Khet**: move and rotate mirrors so your laser
+reaches the enemy **Pharaoh**. Play against the **AI (minimax with alpha-beta pruning)**
+or against a friend, right in the browser — **no dependencies, no install**.
 
 > **Demo:** https://criscarr26.github.io/laser-chess/
 
-![Estado](https://img.shields.io/badge/estado-jugable-brightgreen)
-![Hecho con](https://img.shields.io/badge/JavaScript-vanilla-yellow)
-![IA](https://img.shields.io/badge/IA-minimax%20%2B%20alfa--beta-blueviolet)
-![Licencia](https://img.shields.io/badge/licencia-MIT-blue)
+![Status](https://img.shields.io/badge/status-playable-brightgreen)
+![Made with](https://img.shields.io/badge/JavaScript-vanilla-yellow)
+![AI](https://img.shields.io/badge/AI-minimax%20%2B%20alpha--beta-blueviolet)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
 ---
 
-## Cómo jugar
+## How to play
 
-Cada turno haces **una** acción y al terminar **tu Esfinge dispara el láser automáticamente**:
+Each turn you take **one** action, and at the end **your Sphinx fires the laser automatically**:
 
-| Acción | Cómo |
+| Action | How |
 |---|---|
-| **Mover** | Clic en tu pieza → clic en una casilla adyacente vacía (incluye diagonales) |
-| **Rotar** | Clic en tu pieza → botones ⟲ / ⟳ (gira 90°) |
-| **Intercambiar** | Con el Espejo Doble: clic en él → clic en un Triángulo o Bloque adyacente |
+| **Move** | Click your piece → click an adjacent empty square (diagonals included) |
+| **Rotate** | Click your piece → ⟲ / ⟳ buttons (rotates 90°) |
+| **Swap** | With the Double Mirror: click it → click an adjacent Triangle or Block |
 
-### Las piezas
+### The pieces
 
-| Pieza | Rol |
+| Piece | Role |
 |---|---|
-| **Faraón** | El objetivo. Se mueve pero no rota. Si un láser lo alcanza, su dueño pierde. |
-| **Esfinge** | Dispara el láser. Rota (nunca hacia fuera del tablero) pero no se mueve ni se destruye. |
-| **Triángulo** | Refleja el láser con su cara espejada (la diagonal brillante). Golpeado por otra cara, se destruye. |
-| **Bloque** | Absorbe el láser pero queda destruido. No rota. |
-| **Espejo Doble** | Refleja por ambas caras — indestructible. Puede intercambiar posición con Triángulos y Bloques adyacentes. |
+| **Pharaoh** | The target. Moves but doesn't rotate. If a laser reaches it, its owner loses. |
+| **Sphinx** | Fires the laser. Rotates (never off the board) but doesn't move or get destroyed. |
+| **Triangle** | Reflects the laser with its mirrored face (the bright diagonal). Hit on another face, it's destroyed. |
+| **Block** | Absorbs the laser but is destroyed. Doesn't rotate. |
+| **Double Mirror** | Reflects on both faces — indestructible. Can swap position with adjacent Triangles and Blocks. |
 
-Las **casillas tintadas** de rojo/azul son exclusivas: solo piezas de ese color pueden entrar.
+The red/blue **tinted squares** are exclusive: only pieces of that color may enter.
 
-### Modos de juego
+### Game modes
 
-- **Humano vs IA** (como Rojo o como Azul) con 3 dificultades
-- **2 jugadores** en el mismo dispositivo
-- **IA vs IA** — modo demo para ver a las dos IAs enfrentarse
+- **Human vs AI** (as Red or Blue) with 3 difficulties
+- **2 players** on the same device
+- **AI vs AI** — demo mode to watch the two AIs face off
 
-## Ejecutar localmente
+## Run locally
 
-No hay build ni dependencias. Cualquiera de estas opciones:
+No build, no dependencies. Any of these options:
 
 ```bash
-# Opción 1: abrir directamente
-#   doble clic en index.html
+# Option 1: open directly
+#   double-click index.html
 
-# Opción 2: servidor local
+# Option 2: local server
 python -m http.server 8000
 # → http://localhost:8000
 ```
 
-También se incluye la **versión original de consola** en Python:
+The original **console version** in Python is also included:
 
 ```bash
 python laser_chess.py
 ```
 
-## La IA
+## The AI
 
-La IA está en [`js/ai.js`](js/ai.js) y usa **minimax con poda alfa-beta**:
+The AI lives in [`js/ai.js`](js/ai.js) and uses **minimax with alpha-beta pruning**:
 
-- **Función de evaluación**: material (triángulos y bloques vivos) + análisis de amenaza láser —
-  simula el disparo de ambos jugadores sobre el tablero actual y premia/penaliza según qué
-  alcanzaría cada rayo.
-- **Ordenamiento de movimientos**: los hijos se exploran de mejor a peor evaluación inmediata,
-  lo que maximiza los cortes de la poda.
-- **Dificultades**: Fácil (profundidad 1 + aleatoriedad), Medio (profundidad 2), Difícil (profundidad 3).
+- **Evaluation function**: material (living triangles and blocks) + laser-threat analysis —
+  it simulates both players' shots on the current board and rewards/penalizes based on what
+  each beam would reach.
+- **Move ordering**: children are explored from best to worst immediate evaluation,
+  which maximizes pruning cutoffs.
+- **Difficulties**: Easy (depth 1 + randomness), Medium (depth 2), Hard (depth 3).
 
-## Estructura
+## Structure
 
 ```
-├── index.html          # Página del juego
-├── css/style.css       # Tema neón, tablero, animaciones
+├── index.html          # Game page
+├── css/style.css       # Neon theme, board, animations
 ├── js/
-│   ├── engine.js       # Motor de reglas puro (sin DOM) — testeable y reutilizable
-│   ├── ai.js           # Minimax + poda alfa-beta
-│   └── ui.js           # Render, interacción, animación del láser, sonido WebAudio
+│   ├── engine.js       # Pure rules engine (no DOM) — testable and reusable
+│   ├── ai.js           # Minimax + alpha-beta pruning
+│   └── ui.js           # Rendering, interaction, laser animation, WebAudio sound
 ├── tests/
-│   └── engine.test.js  # Tests del motor (node --test)
+│   └── engine.test.js  # Engine tests (node --test)
 ├── docs/GDD.md         # Game Design Document
-└── laser_chess.py      # Versión original de consola (Python)
+└── laser_chess.py      # Original console version (Python)
 ```
 
 ## Tests
 
-Con [Node.js](https://nodejs.org) instalado:
+With [Node.js](https://nodejs.org) installed:
 
 ```bash
 node --test tests/engine.test.js
 ```
 
-Cubren: física del láser (reflexiones, destrucción, absorción), reglas de movimiento y rotación,
-zonas exclusivas, intercambio del Espejo Doble, condiciones de victoria y sanidad de la IA.
+They cover: laser physics (reflections, destruction, absorption), movement and rotation rules,
+exclusive zones, Double Mirror swapping, win conditions and AI sanity.
 
-## Publicar en GitHub Pages
+## Deploy to GitHub Pages
 
-1. Sube el repo a GitHub
+1. Push the repo to GitHub
 2. **Settings → Pages → Source: Deploy from a branch → `main` / root**
-3. En un minuto el juego queda en vivo en `https://<tu-usuario>.github.io/<tu-repo>/`
+3. In a minute the game is live at `https://<your-username>.github.io/<your-repo>/`
 
-## Notas de diseño
+## Design notes
 
-- **Regla corregida respecto a la versión de consola**: en `laser_chess.py`, quien disparaba
-  ganaba si el láser alcanzaba *cualquier* Faraón (incluso el propio). Aquí se aplica la regla
-  estándar de Khet: **pierde el dueño del Faraón alcanzado** — dispararte a ti mismo te cuesta
-  la partida.
-- El intercambio del Espejo Doble funciona con Triángulos y Bloques **de cualquier color**
-  (igual que el escarabajo en Khet 2.0).
-- El motor (`engine.js`) es inmutable: cada acción devuelve un estado nuevo, lo que hace
-  trivial el "deshacer" y la búsqueda minimax.
+- **Rule fixed relative to the console version**: in `laser_chess.py`, the shooter won
+  if the laser reached *any* Pharaoh (even their own). Here the standard Khet rule applies:
+  **the owner of the Pharaoh that gets hit loses** — shooting yourself costs you the game.
+- The Double Mirror swap works with Triangles and Blocks **of any color**
+  (like the scarab in Khet 2.0).
+- The engine (`engine.js`) is immutable: each action returns a new state, which makes
+  "undo" and the minimax search trivial.
 
-## Licencia
+## License
 
 [MIT](LICENSE)
